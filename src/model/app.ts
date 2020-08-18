@@ -1,7 +1,4 @@
-// import router from 'umi/router'
-// import {
-//   RouteConst,
-// } from '@/config'
+
 import {apiLogin} from '../services/api.js'
 import axios from 'axios'
 export interface IApp {

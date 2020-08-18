@@ -11,16 +11,14 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 const LoginForm = () => {
   const [redirect, setRedirect] = useState(false);
   const onFinish =values =>{
-    const type ='login'
+   console.log(values)
     dispatch({
-      type: 'login',
+      type: 'app/login',
       payload: {
         ...value,
       }
     })
   }
-
-  
   console.log(redirect);
   if (redirect) {
     return <Redirect to="/" />;
