@@ -4,12 +4,14 @@ import 'antd/dist/antd.css';
 import axios from 'axios';
 import styles from './index.less';
 import { Redirect } from 'react-router';
-const baseURL = 'http://localhost:4000/';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+ 
+const baseURL = 'http://localhost:4000/';
+const LoginForm = () => { 
 
-const LoginForm = () => {
   const [redirect, setRedirect] = useState(false);
+
   const onFinish =values =>{
    console.log(values)
     dispatch({
@@ -18,8 +20,10 @@ const LoginForm = () => {
         ...value,
       }
     })
+    // làm sao để set redirect sang true chuyển trang chộ này
   }
   console.log(redirect);
+  
   if (redirect) {
     return <Redirect to="/" />;
   }
