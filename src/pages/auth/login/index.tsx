@@ -7,12 +7,8 @@ import styles from './index.less';
 import { Redirect } from 'react-router';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
- //import { LoginState } from '../../../models/app.ts'
+ import { LoginState } from '../../../models/app.ts'
 const baseURL = 'http://localhost:4000/';
-export interface LoginState {
-  email: String,
-  password :String
-}
 
 export interface PageProps extends ConnectProps {
   login: LoginState;
@@ -40,7 +36,8 @@ console.log(this.props.dispatch, '<= dispatch')
     //   });
     // }
    render(){
-   // const {login:{email,password} } = this.props;
+    const {login:{email,password} } = this.props;
+ 
     return (
   <div>
       <Form name="normal_login" className={styles.loginform} >
@@ -101,7 +98,7 @@ console.log(this.props.dispatch, '<= dispatch')
         Or <a href="">register now!</a>
       </Form.Item>
     </Form>
-      {/* <p>{email}-{password}</p> */}
+      <p>Nè: {email}-{password}</p>
   </div>
   );
   }

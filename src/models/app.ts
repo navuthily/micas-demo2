@@ -15,7 +15,7 @@ export interface LoginModelType {
   effects:{
     login:Effect;
   }
-  reducer:{
+  reducers:{
     save:Reducer<LoginState>;
   }
 }
@@ -41,8 +41,8 @@ const LoginModel : LoginModelType= {
     },
   },
 
-  reducer:{
-    save (state, action){
+  reducers:{
+    save(state, action){
       console.log('----------call reducer --save---');
       console.log(state);
       console.log(action)
