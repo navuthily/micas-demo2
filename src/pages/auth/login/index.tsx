@@ -15,32 +15,27 @@ export interface PageProps extends ConnectProps {
   dispatch: Dispatch;
   loading: boolean;
 }
-export interface StateValue {
-  newValue: string
-}
+
 class LoginForm extends React.Component<PageProps, any> {
-    onFinish =()=>{//phải có 1 param value chộ ni
-   console.log(this.props.login, 'login')
-   console.log(this.props.dispatch, '<= dispatch')
+  
+  onFinish =(value: any)=> {
+    // console.log(value, 'value')
+    // console.log(this.props.login, 'login')
+    // console.log(this.props.dispatch, '<= dispatch')
       this.props.dispatch({
         type:'login/submitlogin',
-        payload:{
-          email: 'nana',
-          password:'123456'
-        }
+        payload:
+        value
+        
       })
-    }
-    onChange(event) {
-      this.setState({
-        newItem: event.target.value,
-      });
     }
    render(){
     const {login:{email,password} } = this.props;
- 
+
     return (
   <div>
-      <Form name="normal_login" className={styles.loginform} >
+      <Form name="normal_login" className={styles.loginform} onFinish={this.onFinish} >
+    
       <Form.Item
         name="email"
         rules={[
@@ -50,13 +45,7 @@ class LoginForm extends React.Component<PageProps, any> {
           },
         ]}
       >
-        <Input
-          prefix={<UserOutlined className={styles.siteformitemicon} />}
-          placeholder="Email"
-          onChange={(e)=>this.onChange(e)}
-          value={newItem}
-          ref={(input) => (this.newItem = input)}
-        />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
       </Form.Item>
       <Form.Item
         name="password"
@@ -68,12 +57,9 @@ class LoginForm extends React.Component<PageProps, any> {
         ]}
       >
         <Input
-          prefix={<LockOutlined className={styles.siteformitemicon} />}
+          prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
-          onChange={(e)=>this.onChange(e)}
-          value={newItem}
-          ref={(input) => (this.newItem = input)}
         />
       </Form.Item>
       <Form.Item>
@@ -91,7 +77,7 @@ class LoginForm extends React.Component<PageProps, any> {
           type="primary"
           htmlType="submit"
           className={styles.loginformbutton}
-          onClick={this.onFinish}
+           
         >
           Log in
         </Button>

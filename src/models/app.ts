@@ -1,5 +1,6 @@
+// import service from './services';
+// import {apiLogin} from '../services/api.js'
 import service from './services';
- import {apiLogin} from '../services/api.js'
 import { Effect, Reducer } from 'umi';
 // import axios from 'axios';
 
@@ -30,10 +31,10 @@ const LoginModel : LoginModelType= {
   
   effects: {
     *submitlogin( {payload},{call, put, select}){
-      const response = yield call (apiLogin )
-      if(!response){
-        console.log('no data was fetch')
-      }
+      // const response = yield call (apiLogin )
+      // if(!response){
+      //   console.log('no data was fetch')
+      // }
       console.log('payload', payload)
       console.log('----------call effect -----');
       // const response = yield call(getUserInfo)
@@ -42,7 +43,7 @@ const LoginModel : LoginModelType= {
       // if (!success) {
       //   return notification.error(message)
       // }     
-       const { err } = yield call(service.create, { content: payload.content });
+      // const { err } = yield call(service.create, { content: payload.content });
       yield put({
         type: 'save',
         payload,
