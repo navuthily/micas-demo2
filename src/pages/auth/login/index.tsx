@@ -15,13 +15,13 @@ export interface PageProps extends ConnectProps {
   dispatch: Dispatch;
   loading: boolean;
 }
-
-  class LoginForm extends React.Component<PageProps, any> {
-    onFinish =()=>{
-      console.log('submit')
-
-console.log(this.props.login, 'login')
-console.log(this.props.dispatch, '<= dispatch')
+export interface StateValue {
+  newValue: string
+}
+class LoginForm extends React.Component<PageProps, any> {
+    onFinish =()=>{//phải có 1 param value chộ ni
+   console.log(this.props.login, 'login')
+   console.log(this.props.dispatch, '<= dispatch')
       this.props.dispatch({
         type:'login/submitlogin',
         payload:{
@@ -30,11 +30,11 @@ console.log(this.props.dispatch, '<= dispatch')
         }
       })
     }
-    // onChange(event) {
-    //   this.setState({
-    //     newItem: event.target.value,
-    //   });
-    // }
+    onChange(event) {
+      this.setState({
+        newItem: event.target.value,
+      });
+    }
    render(){
     const {login:{email,password} } = this.props;
  
@@ -53,9 +53,9 @@ console.log(this.props.dispatch, '<= dispatch')
         <Input
           prefix={<UserOutlined className={styles.siteformitemicon} />}
           placeholder="Email"
-          // onChange={(e)=>this.onChange(e)}
-          // value={newItem}
-          // ref={(input) => (this.newItem = input)}
+          onChange={(e)=>this.onChange(e)}
+          value={newItem}
+          ref={(input) => (this.newItem = input)}
         />
       </Form.Item>
       <Form.Item
@@ -71,9 +71,9 @@ console.log(this.props.dispatch, '<= dispatch')
           prefix={<LockOutlined className={styles.siteformitemicon} />}
           type="password"
           placeholder="Password"
-          // onChange={(e)=>this.onChange(e)}
-          // value={newItem}
-          // ref={(input) => (this.newItem = input)}
+          onChange={(e)=>this.onChange(e)}
+          value={newItem}
+          ref={(input) => (this.newItem = input)}
         />
       </Form.Item>
       <Form.Item>
