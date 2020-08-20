@@ -6,26 +6,18 @@ const methods = {
 };
 
 export default {
-  apiHost: process.env.API_URL,
+  apiHost: 'http://localhost:4000',
   methods,
 
-  // Todo
-  todo: {
-    list: () => ({
-      url: '/todos',
-      method: methods.get,
-    }),
-    create: () => ({
-      url: '/todos',
+  // submitlogin
+  submitlogin: {
+    postLogin: () => ({
+      url: '/login',
       method: methods.post,
     }),
-    changeStatus: (_id: string) => ({
-      url: `/todos/select/${_id}`,
-      method: methods.patch,
-    }),
-    changeStatusAll: () => ({
-      url: '/todos',
-      method: methods.put,
+    getLogin: () => ({
+      url: '/login',
+      method: methods.post,
     }),
   },
 };

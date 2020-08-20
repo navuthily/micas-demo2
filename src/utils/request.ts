@@ -1,7 +1,7 @@
 import { request } from 'umi';
 import { APIConst } from '@/config';
 
-const API_HOST = process.env.API_URL;
+const API_HOST = 'http://localhost:4000';
 
 const call = async (
   url: string,
