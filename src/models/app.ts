@@ -43,13 +43,14 @@ const LoginModel : LoginModelType= {
   effects: {
     *submitlogin( {payload},{call, put, select}){
       console.log('----------call effect -----')
-     const response = yield call(service.postLogin, payload);
-     console.log(response.data, 'respone login này')
-var dataLogin =response.data;
-
+//      const response = yield call(service.postLogin, payload);
+//      console.log(response.data, 'respone login này')
+// var dataLogin =response.data;
+const response = yield call(service.postLogin, payload);
+console.log(response, 'res nhé<>')
       yield put({
         type: 'save',
-        dataLogin ,
+        payload ,
       })
     },
 
@@ -57,17 +58,17 @@ var dataLogin =response.data;
   
   reducers:{
     save(state, action){
-      console.log('----------call reducer --save---');
-      console.log(state, 'state ở reducer này');
-      console.log(action.dataLogin, 'action ở reducer này')
-    const a=action.dataLogin;
-    const b = a.user ;
-    const c= a.token
-    console.log(b)
-    localStorage.setItem("accessToken", c);
-    localStorage.setItem("user", JSON.stringify(b));
+    //   console.log('----------call reducer --save---');
+    //   console.log(state, 'state ở reducer này');
+    //   console.log(action.dataLogin, 'action ở reducer này')
+    // const a=action.dataLogin;
+    // const b = a.user ;
+    // const c= a.token
+    // console.log(b)
+    // localStorage.setItem("accessToken", c);
+    // localStorage.setItem("user", JSON.stringify(b));
       return {
-        ...b,
+        ...state,//...b,
         ...action.payload,// hay là action.datalogin ?
       }
     }
