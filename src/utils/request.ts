@@ -1,7 +1,7 @@
 import { request } from 'umi';
 import { APIConst } from '@/config';
 
-const API_HOST = 'http://localhost:4000';
+const API_HOST = 'micasvn.ddns.net:9999/employees';
 
 const call = async (
   url: string,

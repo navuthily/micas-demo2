@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 import { APIConst } from '@/config';
 
-//post  email, pá to login
+
 
 const postLogin = async (payload: any) => {
   const api = APIConst.submitlogin.postLogin();
@@ -13,8 +13,9 @@ const postLogin = async (payload: any) => {
 .then(function(res) {
   const data= res.data;
   const token= data.token;
+  console.log('data => ', data)
   localStorage.setItem("accessToken", token);
-  localStorage.setItem("user", JSON.stringify(data.user));
+
   return data;
 })
 .catch(function(error) {

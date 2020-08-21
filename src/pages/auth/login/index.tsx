@@ -6,8 +6,7 @@ import axios from 'axios';
 import styles from './index.less';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
- import { LoginState } from './models/login'
-const baseURL = 'http://localhost:4000/';
+import { LoginState } from './models/login'
 import {Redirect} from 'umi';
 export interface PageProps extends ConnectProps {
   login: LoginState;
@@ -28,7 +27,7 @@ class LoginForm extends React.Component<PageProps, any> {
     }
    render(){
     const isLogin =  localStorage.getItem('accessToken')
-    //const {login:{email,password} } = this.props;
+    //const {login:{phone,password} } = this.props;
 
     return (
       (isLogin ) ?
@@ -39,7 +38,7 @@ class LoginForm extends React.Component<PageProps, any> {
       <Form name="normal_login" className={styles.loginform} onFinish={this.onFinish} >
     
       <Form.Item
-        name="email"
+        name="phone"
         rules={[
           {
             required: true,
@@ -47,7 +46,7 @@ class LoginForm extends React.Component<PageProps, any> {
           },
         ]}
       >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="phone" />
       </Form.Item>
       <Form.Item
         name="password"

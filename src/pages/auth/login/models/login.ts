@@ -5,7 +5,7 @@ import {
 } from 'umi';
 // import axios from 'axios';
 export interface LoginState {
-  email: string,
+    phone: string,
     password: string,
     isLogin: boolean,
 }
@@ -24,7 +24,7 @@ export interface LoginModelType {
 const LoginModel: LoginModelType = {
   namespace: 'login',
   state: {
-    email: "",
+    phone: "",
     password: "",
     isLogin: false,
   },
@@ -35,7 +35,7 @@ const LoginModel: LoginModelType = {
     }, {call, put, select }:any) {
       console.log('----------call effect -----')
       const response = yield call(service.postLogin, payload);
-      console.log(response, 'res nhé<>')
+      console.log(response, 'res <>')
 
       const token = localStorage.getItem('accessToken')
       console.log(token)

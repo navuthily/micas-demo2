@@ -6,7 +6,7 @@ const methods = {
 };
 
 export default {
-  apiHost: 'http://localhost:4000',
+  apiHost: 'http://micasvn.ddns.net:9999/employees',
   methods,
 
   // submitlogin
