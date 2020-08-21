@@ -38,6 +38,7 @@ const AppModel : AppModelType={
     },
     *logout(){
      localStorage.removeItem('accessToken')
+     console.log('xóa xong token')
      return (history.push('/login'))
   
     }

@@ -12,7 +12,7 @@ const postLogin = async (payload: any) => {
 })
 .then(function(res) {
   const data= res.data;
-  const token= data.token;
+  const token= data.Data;
   console.log('data => ', data)
   localStorage.setItem("accessToken", token);
 
@@ -21,21 +21,12 @@ const postLogin = async (payload: any) => {
 .catch(function(error) {
   return error
 })
-return data
+  return data
   // để chộ này đc vì đã gọi xong api rồi 
 
   };
-  const getLogin = async (payload: any) => {
-    const api = APIConst.submitlogin.getLogin();
-    const data = await request.call(api.url, {
-      method: api.method,
-      data: payload,
-    });
-    console.log(data,'data nè', api)
-    return data;
-    };
 
 export default {
   postLogin,
-  getLogin
+
 };

@@ -6,7 +6,7 @@ const methods = {
 };
 
 export default {
-  apiHost: 'http://micasvn.ddns.net:9999/employees',
+  apiHost: 'http://localhost:4000',
   methods,
 
   // submitlogin
@@ -15,9 +15,6 @@ export default {
       url: '/login',
       method: methods.post,
     }),
-    getLogin: () => ({
-      url: '/login',
-      method: methods.post,
-    }),
+ 
   },
 };
