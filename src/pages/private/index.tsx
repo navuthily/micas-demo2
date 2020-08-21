@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Layout, Menu , } from 'antd';
+import {AppState} from './model'
+import { Layout, Menu ,Button } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -11,38 +12,36 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import { Redirect , Link} from 'umi';
+import { Redirect , Link, connect} from 'umi';
 const { Header, Sider, Content } = Layout;
-const accessToken =  localStorage.getItem('accessToken')
 
-
-
-// Normal navigation without query string
-
-
-
-export default class SiderDemo extends React.Component {
+class AuthLayout extends React.Component <any, any>{
   constructor(props: any) {
     super(props);
     this.state = {
       collapsed: false,
     };
   }
-
+  componentDidMount(){
+    this.props.dispatch({
+      type:'app/init'
+    })
+  }
 
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   };
-
+onLogout=()=>{
+  this.props.dispatch({
+    type:'app/logout'
+  })
+}
   
 
   render() {
     return (
-      (accessToken) ?
-      (
-
 
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -66,7 +65,7 @@ export default class SiderDemo extends React.Component {
               onClick: this.toggle,
             })}
              <Link to="/abc">Go to abc page</Link>
-           <Link to="/logout">logout</Link>
+            <Button onClick={this.onLogout}>Logout</Button>
 
          </Header>
           <Content
@@ -80,10 +79,10 @@ export default class SiderDemo extends React.Component {
             {this.props.children}
           </Content>
         </Layout>
-      </Layout>)
-      :
-      <Redirect to="/login" />
+      </Layout>
     );
   }
 }
 
+export default connect(
+  ({app}:{app:AppState})=>({app}))(AuthLayout)

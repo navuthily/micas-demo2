@@ -4,12 +4,11 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import styles from './index.less';
-import { Redirect } from 'react-router';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
- import { LoginState } from '../../../models/app.ts'
+ import { LoginState } from './models/login'
 const baseURL = 'http://localhost:4000/';
-
+import {Redirect} from 'umi';
 export interface PageProps extends ConnectProps {
   login: LoginState;
   dispatch: Dispatch;
@@ -26,8 +25,6 @@ class LoginForm extends React.Component<PageProps, any> {
         
       })
 
- 
-      console.log('oke nè')
     }
    render(){
     const isLogin =  localStorage.getItem('accessToken')
@@ -35,7 +32,7 @@ class LoginForm extends React.Component<PageProps, any> {
 
     return (
       (isLogin ) ?
-     <Redirect to="/home" />
+     <Redirect to='/service-places'/>
       :
       (
      <div>

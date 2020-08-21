@@ -10,7 +10,7 @@ export default defineConfig({
       path: '/',
        component: 'private/index',
       routes: [
-        { path: '/home', component: 'private/home/index' },
+        { path: '/service-places', component: 'private/home/index' },
         { path: '/abc', component: 'private/abc/index' },
       ],
     },
