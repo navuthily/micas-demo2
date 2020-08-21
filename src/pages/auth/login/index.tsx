@@ -18,22 +18,27 @@ export interface PageProps extends ConnectProps {
 
 class LoginForm extends React.Component<PageProps, any> {
   
-  onFinish =(value: any)=> {
-    // console.log(value, 'value')
-    // console.log(this.props.login, 'login')
-    // console.log(this.props.dispatch, '<= dispatch')
-      this.props.dispatch({
+  onFinish =async (value: any)=> {
+   this.props.dispatch({
         type:'login/submitlogin',
         payload:
         value
         
       })
+
+ 
+      console.log('oke nè')
     }
    render(){
-    const {login:{email,password} } = this.props;
+    const isLogin =  localStorage.getItem('accessToken')
+    //const {login:{email,password} } = this.props;
 
     return (
-  <div>
+      (isLogin ) ?
+     <Redirect to="/home" />
+      :
+      (
+     <div>
       <Form name="normal_login" className={styles.loginform} onFinish={this.onFinish} >
     
       <Form.Item
@@ -84,8 +89,9 @@ class LoginForm extends React.Component<PageProps, any> {
         Or <a href="">register now!</a>
       </Form.Item>
     </Form>
-      <p>Nè: {email}-{password}</p>
-  </div>
+    
+  </div>)
+  
   );
   }
 };

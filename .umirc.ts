@@ -8,7 +8,7 @@ export default defineConfig({
     { path: '/login', component: 'auth/login/index' },
     {
       path: '/',
-      component: 'private',
+       component: 'private/index',
       routes: [
         { path: '/home', component: 'private/home/index' },
         { path: '/abc', component: 'private/abc/index' },
