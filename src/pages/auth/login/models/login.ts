@@ -1,69 +1,54 @@
 import service from './services';
-import {
-  Effect,
-
-
-
-
-
-
-  Reducer,
-  history
-} from 'umi';
+import { Effect, Reducer, history } from 'umi';
 export interface LoginState {
-  phone: string,
-    password: string,
-    isLogin: boolean,
+  phone: string;
+  password: string;
+  isLogin: boolean;
 }
 export interface LoginModelType {
-  namespace: string,
-    state: LoginState,
-    effects: {
-      submitlogin: Effect;
-    }
+  namespace: string;
+  state: LoginState;
+  effects: {
+    submitlogin: Effect;
+  };
   reducers: {
-    save: Reducer < LoginState > ;
-  }
+    save: Reducer<LoginState>;
+  };
 }
 const LoginModel: LoginModelType = {
   namespace: 'login',
   state: {
-    phone: "",
-    password: "",
+    phone: '',
+    password: '',
     isLogin: false,
   },
 
   effects: {
-    * submitlogin({
-      payload
-    }: any, {
-      call,
-      put,
-      select
-    }: any) {
+    *submitlogin({ payload }: any, { call, put, select }: any) {
       yield call(service.postLogin, payload);
 
-      const token = localStorage.getItem('accessToken')
+      const token = localStorage.getItem('accessToken');
+      console.log('token', token);
       if (token) {
-        return yield put(history.push('/service-places'))
+        return yield put(history.push('/service-places'));
       }
-
+      if (!token) {
+        return;
+      }
       yield put({
         type: 'save',
         payload,
-      })
+      });
     },
-
   },
 
   reducers: {
     save(response: any, action) {
-
       return {
         ...response.user,
         ...action.payload,
-      }
-    }
-  }
-}
+      };
+    },
+  },
+};
 export default LoginModel;
