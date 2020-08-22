@@ -1,5 +1,4 @@
 import {Effect, Reducer, history} from 'umi';
-// import axios from 'axios';
 export interface AppUser {
 _id: string;
 name: string;
@@ -29,16 +28,13 @@ const AppModel : AppModelType={
   },
   effects:{
     *init(_,{put}){
-      console.log('app init');
       const token = localStorage.getItem('accessToken')
-      console.log(token)
       if(!token){
         return yield put(history.push('/login'))
       }
     },
     *logout(){
      localStorage.removeItem('accessToken')
-     console.log('xóa xong token')
      return (history.push('/login'))
   
     }

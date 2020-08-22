@@ -9,13 +9,11 @@ export interface LoginState {
     password: string,
     isLogin: boolean,
 }
-
-
 export interface LoginModelType {
   namespace: string,
     state: LoginState,
     effects: {
-      login: Effect;
+      submitlogin: Effect;
     }
   reducers: {
     save: Reducer < LoginState > ;
@@ -30,15 +28,12 @@ const LoginModel: LoginModelType = {
   },
 
   effects: {
-    * submitlogin({
+    *submitlogin({
       payload
-    }, {call, put, select }:any) {
-      console.log('----------call effect -----')
-      const response = yield call(service.postLogin, payload);
-      console.log(response, 'res <>')
+    }: any, {call, put, select }:any) {
+      yield call(service.postLogin, payload);
 
       const token = localStorage.getItem('accessToken')
-      console.log(token)
       if(token){
         return yield put(history.push('/service-places'))
       }
@@ -52,15 +47,14 @@ const LoginModel: LoginModelType = {
   },
 
   reducers: {
-    save(response: any, action) { // hoặc là state 
-      console.log('----------call reducer --save---');
+    save(response: any, action) { 
 
       return {
-        ...response.user, // ...state
+        ...response.user, 
         ...action.payload,
       }
     }
   }
 }
 export default LoginModel;
-//khi nào link qua trang logout thì xóa đi
+

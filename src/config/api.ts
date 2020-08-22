@@ -6,7 +6,7 @@ const methods = {
 };
 
 export default {
-  apiHost: 'http://localhost:4000',
+
   methods,
 
   // submitlogin
