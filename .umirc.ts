@@ -8,12 +8,11 @@ export default defineConfig({
     { path: '/login', component: 'auth/login/index' },
     {
       path: '/',
-       component: 'private/index',
+      component: 'private/index',
       routes: [
-        { path: '/service-places', component: 'private/home/index' },
-        { path: '/abc', component: 'private/abc/index' },
+        { path: '/service-places', component: 'private/service-places/index' },
+        { path: '/booking', component: 'private/booking/index' },
       ],
     },
   ],
 });
-

@@ -1,31 +1,32 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import './index.css';
-import {AppState} from './model'
-import { Layout, Menu ,Button } from 'antd';
+import { AppState } from './model';
+import styles from './index.less';
+import { Layout, Menu, Button } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
   VideoCameraOutlined,
   UploadOutlined,
-} from '@ant-design/icons';
-import { Redirect , Link, connect} from 'umi';
+} from 
+'@ant-design/icons';
+
+import { Redirect, Link, connect } from 'umi';
 const { Header, Sider, Content } = Layout;
 
-class AuthLayout extends React.Component <any, any>{
+class AuthLayout extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
       collapsed: false,
     };
   }
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch({
-      type:'app/init'
-    })
+      type: 'app/init',
+    });
   }
 
   toggle = () => {
@@ -33,19 +34,16 @@ class AuthLayout extends React.Component <any, any>{
       collapsed: !this.state.collapsed,
     });
   };
-onLogout=()=>{
-  this.props.dispatch({
-    type:'app/logout'
-  })
-}
-  
-
+  onLogout = () => {
+    this.props.dispatch({
+      type: 'app/logout',
+    });
+  };
   render() {
     return (
-
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
+          <div className={styles.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<UserOutlined />}>
               nav 1
@@ -58,18 +56,26 @@ onLogout=()=>{
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className="site-layout">
-              <Header className="site-layout-background" style={{ padding: 0 }}>
-              {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: this.toggle,
-            })}
-             <Link to="/abc">Go to abc page</Link>
-            <Button onClick={this.onLogout}>Logout</Button>
-
-         </Header>
+        <Layout className={styles.siteLayout}>
+          <Header
+            className={styles.siteLayoutBackground}
+            style={{ padding: 0 }}
+          >
+                  <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']}>
+        <Menu.Item key="1"> <Link to="/service-places">Service-places</Link>
+            </Menu.Item>
+        <Menu.Item key="2"><Link to="/booking">Booking</Link></Menu.Item>
+    <Button onClick={this.onLogout}>Logout</Button>
+      </Menu>
+            {React.createElement(
+              this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+              {
+                onClick: this.toggle,
+              },
+            )}
+          </Header>
           <Content
-            className="site-layout-background"
+            className={styles.siteLayoutBackground}
             style={{
               margin: '24px 16px',
               padding: 24,
@@ -84,5 +90,4 @@ onLogout=()=>{
   }
 }
 
-export default connect(
-  ({app}:{app:AppState})=>({app}))(AuthLayout)
+export default connect(({ app }: { app: AppState }) => ({ app }))(AuthLayout);

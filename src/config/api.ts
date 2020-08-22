@@ -6,15 +6,11 @@ const methods = {
 };
 
 export default {
-
   methods,
-
-  // submitlogin
   submitlogin: {
     postLogin: () => ({
       url: '/login',
       method: methods.post,
     }),
- 
   },
 };

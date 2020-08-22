@@ -1,11 +1,17 @@
 import service from './services';
 import {
   Effect,
-  Reducer, history
+
+
+
+
+
+
+  Reducer,
+  history
 } from 'umi';
-// import axios from 'axios';
 export interface LoginState {
-    phone: string,
+  phone: string,
     password: string,
     isLogin: boolean,
 }
@@ -28,16 +34,20 @@ const LoginModel: LoginModelType = {
   },
 
   effects: {
-    *submitlogin({
+    * submitlogin({
       payload
-    }: any, {call, put, select }:any) {
+    }: any, {
+      call,
+      put,
+      select
+    }: any) {
       yield call(service.postLogin, payload);
 
       const token = localStorage.getItem('accessToken')
-      if(token){
+      if (token) {
         return yield put(history.push('/service-places'))
       }
-    
+
       yield put({
         type: 'save',
         payload,
@@ -47,14 +57,13 @@ const LoginModel: LoginModelType = {
   },
 
   reducers: {
-    save(response: any, action) { 
+    save(response: any, action) {
 
       return {
-        ...response.user, 
+        ...response.user,
         ...action.payload,
       }
     }
   }
 }
 export default LoginModel;
-
