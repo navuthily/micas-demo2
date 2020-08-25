@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { AppState } from './model';
 import styles from './index.less';
@@ -10,8 +9,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   UploadOutlined,
-} from 
-'@ant-design/icons';
+} from '@ant-design/icons';
 
 import { Redirect, Link, connect } from 'umi';
 const { Header, Sider, Content } = Layout;
@@ -61,12 +59,16 @@ class AuthLayout extends React.Component<any, any> {
             className={styles.siteLayoutBackground}
             style={{ padding: 0 }}
           >
-                  <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1"> <Link to="/service-places">Service-places</Link>
-            </Menu.Item>
-        <Menu.Item key="2"><Link to="/booking">Booking</Link></Menu.Item>
-    <Button onClick={this.onLogout}>Logout</Button>
-      </Menu>
+            <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']}>
+              <Menu.Item key="1">
+                {' '}
+                <Link to="/service-places">Service-places</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/booking">Booking</Link>
+              </Menu.Item>
+              <Button onClick={this.onLogout}>Logout</Button>
+            </Menu>
             {React.createElement(
               this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {

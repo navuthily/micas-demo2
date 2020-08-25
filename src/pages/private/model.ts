@@ -1,4 +1,4 @@
-import {Effect,Reducer,history} from 'umi';
+import { Effect, Reducer, history } from 'umi';
 export interface AppUser {
   _id: string;
   name: string;
@@ -16,40 +16,35 @@ export interface AppModelType {
     logout: Effect;
   };
   reducers: {
-    save: Reducer < AppState > ;
-  }
-};
+    save: Reducer<AppState>;
+  };
+}
 
 const AppModel: AppModelType = {
   namespace: 'app',
   state: {
     isLogginIn: false,
-    user: null
+    user: null,
   },
   effects: {
-    * init(_, {
-      put
-    }) {
-      const token = localStorage.getItem('accessToken')
+    *init(_, { put }) {
+      const token = localStorage.getItem('accessToken');
       if (!token) {
-        return yield put(history.push('/login'))
+        return yield put(history.push('/login'));
       }
     },
-    * logout() {
-      localStorage.removeItem('accessToken')
-      return (history.push('/login'))
-
-    }
+    *logout() {
+      localStorage.removeItem('accessToken');
+      return history.push('/login');
+    },
   },
   reducers: {
-    save(state, {
-      payload
-    }) {
+    save(state, { payload }) {
       return {
         ...state,
-        ...payload
-      }
-    }
-  }
-}
+        ...payload,
+      };
+    },
+  },
+};
 export default AppModel;
